@@ -13,11 +13,15 @@ def run_event():
     for event in events:
         if event.type == SDL_QUIT:
             running == False
+            close_canvas()
+            exit()
 
         elif event.type == SDL_MOUSEMOTION:
             x, y = event.x, KPU_HEIGHT - 1 - event.y
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running == False
+            close_canvas()
+            exit()
     pass
 
 def run_dir(now, after):
@@ -31,11 +35,10 @@ def run_dir(now, after):
         return 0
 
 def random_location():
-    ran_x = random.randrange(0, KPU_WIDTH + 1)
-    ran_y = random.randrange(0, KPU_HEIGHT + 1)
+    run_x = random.randrange(0, KPU_WIDTH + 1)
+    run_y = random.randrange(0, KPU_HEIGHT + 1)
 
-
-    return ran_x, ran_y
+    return run_x, run_y
 
 def following_line():
     global running
@@ -59,7 +62,6 @@ def following_line():
         frame = (frame + 1) % 8
         delay(0.05)
 
-        run_event()
 
 
 open_canvas(KPU_WIDTH, KPU_HEIGHT)
@@ -82,5 +84,7 @@ while running:
     run_event()
 
 
-close_canvas()
+
+
+
 
